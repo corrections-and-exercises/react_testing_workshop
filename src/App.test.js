@@ -1,8 +1,11 @@
 import { render, screen } from '@testing-library/react';
-import App from './App';
+import userEvent from '@testing-library/user-event';
+import App from './App.js';
 
-test('renders learn react link', () => {
+test('simulate button click', async () => {
   render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+  const button = screen.getByRole('button');
+  await userEvent.click(button);
+  const headline = screen.getByText(/hello world/i);
+  expect(headline).toBeInTheDocument();
 });
